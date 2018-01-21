@@ -6,7 +6,6 @@ import Article from "../../components/Article/Article";
 import API from "../../utils/newsAPI";
 import cryptoAPI from "../../utils/binanceAPI";
 import { Table } from "../../components/Table";
-import { ArticleTable } from "../../components/NewsArticle";
 
 
 class Dashboard extends Component {
@@ -48,9 +47,9 @@ cryptoPairs = query => {
             <br/>
             <br/>
             <hr/>
-              <Table
-                cryptoData= {this.state.coins}
-              />
+            <Table
+              cryptoData= {this.state.coins}
+            />
             <hr/>
             <br/>
             <br/>
@@ -64,10 +63,17 @@ cryptoPairs = query => {
             <br/>
             <hr />
             <h1 className="text-center">Latest Cryptocurrency News Articles</h1>
-            <ArticleTable 
-             articles= {this.state.articles}
-            />
             <hr />
+            {this.state.articles.map((article) => {
+              return (
+              <Article 
+                src={article.urlToImage}
+                title={article.title}
+                url={article.url}
+                description={article.description}  
+              />
+              )
+            })}
             <br/>
             <br/>
           </Row>
